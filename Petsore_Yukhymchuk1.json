@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "c95667c1-c124-439e-b1e7-23ab50722b80",
+		"name": "домашка 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47964832",
+		"_collection_link": "https://oleksandra-yukhymchuk-s-team.postman.co/workspace/18a16ab5-d32e-4864-85a6-9bb390691f89/collection/47964832-c95667c1-c124-439e-b1e7-23ab50722b80?action=share&source=collection_link&creator=47964832"
+	},
+	"item": [
+		{
+			"name": "Add a new pet to the store 2xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(2303);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Murka\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"photoUrls\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(17);\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"Cats\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"tags\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(0);\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"string\");\r",
+							"});\r",
+							"    \r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new pet to the store 4xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"405 Invalid input\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": murka,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing pet 2xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(2303);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(17);\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"Cats\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Murka\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"photoUrls\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"tags\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(0);\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing pet 4xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"405 Invalid input\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Invalid input\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": murka,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find pets by status 2xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"2303\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    const expectedId = 2303;\r",
+							"    const pet = jsonData.find(p => p.id == expectedId); \r",
+							"    pm.expect(pet, `Pet з id=${expectedId} має існувати`).to.not.be.undefined;\r",
+							"// Fixed typo from fined to find\r",
+							"    pm.expect(pet.id).to.eql(expectedId);\r",
+							"    pm.expect(pet.name).to.eql(\"Murka\");\r",
+							"    pm.expect(pet.photoUrls[0]).to.eql(\"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\");\r",
+							"    pm.expect(pet.tags[0].id).to.eql(0);\r",
+							"    pm.expect(pet.tags[0].name).to.eql(\"string\");\r",
+							"    pm.expect(pet.status).to.eql(\"available\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=available",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find pets by status 4xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/findByStatus?status=delete",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "delete"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Pet by ID 2xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(2303);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"category\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(17);\r",
+							"    pm.expect(jsonData.category.name).to.eql(\"Cats\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Murka\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"photoUrls\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"tags\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(0);\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(\"available\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/2303",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"2303"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Pet by ID 4xx",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"404 Pet not found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Pet not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 2303,\r\n  \"category\": {\r\n    \"id\": 17,\r\n    \"name\": \"Cats\"\r\n  },\r\n  \"name\": \"Murka\",\r\n  \"photoUrls\": [\r\n    \"https://images.squarespace-cdn.com/content/v1/53ef83c7e4b0b26ce6e2698b/1463578960762-F2RSLNYGT3B738G2942F/ke17ZwdGBToddI8pDm48kPg3kkMSlDqGprD-21e6kCJZw-zPPgdn4jUwVcJE1ZvW56LRaUT1pClzWs44DErAMamWLI2zvYWH8K3-s_4yszcp2ryTI0HqTOaaUohrI8PIFRL-pN49BbkVzk1v5o1c_DocVJTUw2x89vS-fOzxt-8KMshLAGzx4R3EDFOm1kBS/image-asset.jpeg?format=1500w\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 0,\r\n      \"name\": \"string\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/2031675",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"2031675"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a pet 2хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"delete\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"2303\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/2303",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"2303"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a pet 4хх",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/2031675",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"2031675"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
